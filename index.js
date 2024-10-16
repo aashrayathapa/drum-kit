@@ -7,7 +7,8 @@ for (var i = 0; i < numberOfDrumButtons; i++){
         var buttonInnerHTML = this.innerHTML; // assigns the letter of the button clicked to the variable
 
         makeSound(buttonInnerHTML); // this basically sends in the value of te button that was pressed to the makeSound function incase they don't press a key
-
+        
+        buttonAnimation(buttonInnerHTML);
     });
 }
 
@@ -15,7 +16,9 @@ for (var i = 0; i < numberOfDrumButtons; i++){
 
 document.addEventListener("keydown", function (event){ // listens for a key to be pressed and wen it is pressed the function calls te makeSound function
 
-    makeSound(event.key) // event.key tells us which keyboard key was pressed
+    makeSound(event.key); // event.key tells us which keyboard key was pressed
+
+    buttonAnimation(event.key);
 
 });
 
@@ -59,3 +62,14 @@ function makeSound(key) {
 
 
 };
+
+function buttonAnimation(currentKey){
+
+    var activeButton = document.querySelector("." + currentKey);
+
+    activeButton.classList.add("pressed");
+
+    setTimeout(function(){
+        activeButton.classList.remove("pressed");
+    },100)
+}
